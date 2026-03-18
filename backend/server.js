@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+
 const userSchema = require('./schemas/UserSchema');
 const employeeSchema = require('./schemas/EmployeeSchema');
 const userResolvers = require('./resolvers/UserResolvers');
@@ -34,7 +36,23 @@ async function startServer() {
         '/graphql',
         cors(),
         express.json(),
-        expressMiddleware(server)
+        expressMiddleware(server, {
+            context: async ({ req }) => {
+                const authHeader = req.headers.authorization || "";
+                let user = null;
+
+                if (authHeader.startsWith("Bearer ")) {
+                    const token = authHeader.split(" ")[1];
+                    try {
+                        user = jwt.verify(token, process.env.JWT_SECRET);
+                    } catch (err) {
+                        console.log("Invalid JWT:", err.message);
+                    }
+                }
+
+                return { user };
+            }
+        })
     );
 
     app.listen(process.env.PORT, () => {

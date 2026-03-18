@@ -5,14 +5,17 @@ const employeeResolvers = {
     Date: DateResolver,
 
     Query: {
-        employees: async () => {
+        employees: async (_, __, { user }) => {
+            if (!user) { throw new Error("Unauthorized"); }
+
             try {
                 return await EmployeeModel.find();
             } catch (error) {
                 throw new Error(`Failed to fetch employees: ${error}`);
             }
         },
-        employee: async (_, { id }) => {
+        employee: async (_, { id }, { user }) => {
+            if (!user) { throw new Error("Unauthorized"); }
             try {
                 const employee = await EmployeeModel.findById(id);
                 if (!employee) {
@@ -24,7 +27,8 @@ const employeeResolvers = {
                 throw new Error(`Failed to fetch employee: ${error}`);
             }
         },
-        employeesByDesignationOrDepartment: async (_, { designation, department }) => {
+        employeesByDesignationOrDepartment: async (_, { designation, department }, { user }) => {
+            if (!user) { throw new Error("Unauthorized"); }
             try {
                 return await EmployeeModel.find({
                     $or: [
@@ -38,7 +42,8 @@ const employeeResolvers = {
         }
     },
     Mutation: {
-        createEmployee: async (_, { first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }) => {
+        createEmployee: async (_, { first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }, { user} ) => {
+            if (!user) { throw new Error("Unauthorized"); }
             try {
                 const newEmployee = new EmployeeModel({
                     first_name,
@@ -56,7 +61,8 @@ const employeeResolvers = {
                 throw new Error(`Failed to create employee: ${error}`);
             }
         },
-        updateEmployee: async (_, { id, first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }) => {
+        updateEmployee: async (_, { id, first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }, {user}) => {
+            if (!user) { throw new Error("Unauthorized"); }
             try {
                 const updatedEmployee = await EmployeeModel.findByIdAndUpdate(
                     id,
@@ -72,7 +78,8 @@ const employeeResolvers = {
                 throw new Error(`Failed to update employee: ${error}`);
             }
         },
-        deleteEmployee: async (_, { id }) => {
+        deleteEmployee: async (_, { id }, {user}) => {
+            if (!user) { throw new Error("Unauthorized"); }
             try {
                 const deletedEmployee = await EmployeeModel.findByIdAndDelete(id);
                 if (!deletedEmployee) {
