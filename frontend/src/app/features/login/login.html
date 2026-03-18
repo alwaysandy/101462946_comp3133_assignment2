@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center fw-bold fs-4">
+          Login
+        </div>
+        <div class="card-body p-4">
+          <div id="error-alert" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+            <span id="error-message"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <form (submit)="onSubmit(); $event.preventDefault()" id="login-form" class="mb-3">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                [formField]="loginForm.email"
+                class="form-control"
+                id="email"
+              >
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                [formField]="loginForm.password"
+                class="form-control"
+                id="password"
+              >
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+
+          <a href="/signup">Don't have an account? Signup here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
