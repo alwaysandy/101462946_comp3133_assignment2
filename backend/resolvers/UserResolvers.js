@@ -1,4 +1,5 @@
 const UserModel = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
 
 const userResolvers = {
     Query: {
@@ -13,7 +14,18 @@ const userResolvers = {
                 if (!isMatch) {
                     throw new Error('Invalid password');
                 }
-                return true;
+
+                const userTokenInfo = { id: user._id, email: user.email };
+                const token = jwt.sign(
+                    userTokenInfo,
+                    process.env.JWT_SECRET,
+                    { expiresIn: 120 }
+                );
+
+                return {
+                    token,
+                    id: user._id
+                };
             } catch (error) {
                 throw new Error(`Failed to login user: ${error}`);
             }

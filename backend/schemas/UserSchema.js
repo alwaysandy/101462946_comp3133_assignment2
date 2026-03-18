@@ -5,10 +5,13 @@ const userSchema = gql`
         id: ID!
         username: String!
         email: String!
-        password: String!
+    },
+    type AuthPayload {
+        token: String!
+        id: ID!
     },
     type Query {
-        login(email: String!, password: String!): Boolean
+        login(email: String!, password: String!): AuthPayload!
     },
     type Mutation {
         signupUser(username: String!, email: String!, password: String!): User
