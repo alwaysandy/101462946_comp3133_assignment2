@@ -1,1 +1,14 @@
+<nav class="navbar navbar-dark bg-dark shadow-sm mb-4">
+  <div class="container-fluid px-4">
+    <span class="navbar-brand h1 mb-0 fw-bold text-uppercase">
+      Employee Management App
+    </span>
+
+    @if (isLoggedIn()) {
+      <button (click)="logout()" class="btn btn-outline-light btn-sm px-3">
+        Logout
+      </button>
+    }
+  </div>
+</nav>
 <router-outlet />

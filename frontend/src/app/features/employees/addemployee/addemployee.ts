@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Router, RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
@@ -13,7 +12,7 @@ import {
 @Component({
   selector: 'add-employee',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgbAlertModule, RouterLink],
+  imports: [ReactiveFormsModule, NgbAlertModule, RouterLink],
   templateUrl: './addemployee.html',
   styleUrl: './addemployee.css',
 })
@@ -58,8 +57,8 @@ export class AddEmployee {
   }
 
   createEmployee() {
-    this.addForm.markAllAsTouched();
     if (this.addForm.invalid) {
+      this.addForm.markAllAsTouched();
       Object.keys(this.addForm.controls).forEach((key) => {
         const controlErrors = this.addForm.get(key)?.errors;
         if (controlErrors != null) {

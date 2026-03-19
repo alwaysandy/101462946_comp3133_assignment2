@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { Auth } from './core/services/auth'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {}
+export class App {
+  private auth = inject(Auth);
+  private router = inject(Router);
+
+  isLoggedIn() {
+    return this.auth.isAuthenticated();
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
+  }
+}

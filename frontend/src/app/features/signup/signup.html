@@ -4,40 +4,31 @@
       <div class="card shadow-sm">
         <div class="card-header text-center fw-bold fs-4">Signup</div>
         <div class="card-body p-4">
-          <div
-            id="error-alert"
-            class="alert alert-danger alert-dismissible fade show"
-            role="alert"
-            style="display: none"
-          >
-            <span id="error-message"></span>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
-          </div>
+          @if (error) {
+            <ngb-alert type="danger" [dismissible]="true" (closed)="error=''">
+              {{ error }}
+            </ngb-alert>
+          }
 
-          <form (submit)="onSubmit(); $event.preventDefault()" id="signup-form" class="mb-3">
+          <form [formGroup]="signupForm" (submit)="onSubmit(); $event.preventDefault()" id="signup-form" class="mb-3">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input
                 type="text"
-                [formField]="signupForm.username"
+                formControlName="username"
                 class="form-control"
                 id="username"
               />
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" [formField]="signupForm.email" class="form-control" id="email" />
+              <input type="email" formControlName="email" class="form-control" id="email" />
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
-                [formField]="signupForm.password"
+                formControlName="password"
                 class="form-control"
                 id="password"
               />
