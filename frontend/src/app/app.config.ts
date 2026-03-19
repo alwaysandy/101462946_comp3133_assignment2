@@ -5,7 +5,8 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache } from '@apollo/client';
+import { ApolloLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,10 +16,24 @@ export const appConfig: ApplicationConfig = {
     provideApollo(() => {
       const httpLink = inject(HttpLink);
 
+      // @ts-ignore
+      const auth = setContext((operation, context) => {
+        // ← args are (operation, context), not (context, operation)
+        const token = localStorage.getItem('auth_token');
+
+        if (!token) {
+          return {};
+        }
+
+        return {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      });
+
       return {
-        link: httpLink.create({
-          uri: 'http://localhost:4000/graphql',
-        }),
+        link: ApolloLink.from([auth, httpLink.create({ uri: 'http://localhost:4000/graphql' })]),
         cache: new InMemoryCache(),
       };
     }),
