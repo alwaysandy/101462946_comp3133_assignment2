@@ -48,8 +48,12 @@
                   <button routerLink="/employees/details/{{ employee.id }}" class="btn btn-info">
                     View
                   </button>
-                  <button class="btn btn-warning">Update</button>
-                  <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+                  <button routerLink="/employees/update/{{ employee.id }}" class="btn btn-warning">
+                    Update
+                  </button>
+                  <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">
+                    Delete
+                  </button>
                 </div>
               </td>
             </tr>

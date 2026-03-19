@@ -19,16 +19,13 @@ export class EmployeesList {
   }
 
   getEmployees() {
-    console.log('getEmployees()');
     this.apollo
       .watchQuery({
         query: GET_EMPLOYEES,
       })
       .valueChanges.subscribe(({ data, error }: any) => {
-        console.log(data);
         this.employees = data.employees;
         this.cdr.detectChanges();
-        console.log(this.employees);
       });
   }
 
@@ -37,13 +34,15 @@ export class EmployeesList {
       .mutate({
         mutation: DELETE_EMPLOYEE,
         variables: {
-          id
+          id,
         },
-        refetchQueries: [{
-          query: GET_EMPLOYEES
-        }]
-      }).subscribe(({ data, error }: any) => {
-        console.log(data);
+        refetchQueries: [
+          {
+            query: GET_EMPLOYEES,
+          },
+        ],
+      })
+      .subscribe(({ data, error }: any) => {
         console.log(error);
       });
   }
