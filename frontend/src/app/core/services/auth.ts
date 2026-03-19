@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LOGIN } from '../graphql/auth.queries'
+import { LOGIN } from '../graphql/graphql.queries'
 import { tap, catchError, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
