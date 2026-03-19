@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { LOGIN } from '../graphql/graphql.queries';
 import { tap, catchError, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { FormControl, ɵValue } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,10 @@ import { jwtDecode } from 'jwt-decode';
 export class Auth {
   private apollo = inject(Apollo);
 
-  login(email: string, password: string) {
+  login(
+    email: ɵValue<FormControl<string | null>> | undefined,
+    password: ɵValue<FormControl<string | null>> | undefined,
+  ) {
     return this.apollo
       .query({
         query: LOGIN,
