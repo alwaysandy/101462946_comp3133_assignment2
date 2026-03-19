@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LOGIN } from '../graphql/graphql.queries'
+import { LOGIN } from '../graphql/graphql.queries';
 import { tap, catchError, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
@@ -18,7 +18,7 @@ export class Auth {
       })
       .pipe(
         tap((res: any) => localStorage.setItem('auth_token', res.data.login.token)),
-        catchError(err => {
+        catchError((err) => {
           console.log('Global Error Handler: ', err);
           return throwError(() => new Error(err));
         }),

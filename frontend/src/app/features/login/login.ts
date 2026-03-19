@@ -1,21 +1,20 @@
 import { Component, inject, signal } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
 import { Auth } from '../../core/services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'login',
-  imports: [FormField],
+  imports: [FormField, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-
 export class Login {
   authService = inject(Auth);
   router = inject(Router);
   loginModel = signal({
     email: '',
-    password: ''
+    password: '',
   });
 
   loginForm = form(this.loginModel);

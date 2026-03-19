@@ -1,16 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
-import { Router } from '@angular/router';
-import { SIGNUP_USER} from '../../core/graphql/graphql.queries';
+import { Router, RouterLink } from '@angular/router';
+import { SIGNUP_USER } from '../../core/graphql/graphql.queries';
 import { Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-signup',
-  imports: [FormField],
+  imports: [FormField, RouterLink],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
-
 export class Signup {
   private apollo = inject(Apollo);
   private router = inject(Router);
@@ -23,7 +22,7 @@ export class Signup {
   signupForm = form(this.signupModel);
 
   onSubmit() {
-    console.log("addStudent()");
+    console.log('addStudent()');
     this.apollo
       .mutate({
         mutation: SIGNUP_USER,

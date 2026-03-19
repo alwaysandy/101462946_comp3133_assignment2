@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { GET_EMPLOYEES } from '../../core/graphql/graphql.queries'
+import { GET_EMPLOYEES } from '../../core/graphql/graphql.queries';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './employees.html',
   styleUrl: './employees.css',
 })
