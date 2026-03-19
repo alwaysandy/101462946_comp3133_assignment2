@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center fw-bold fs-4">Employee Details</div>
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <img
+              src="{{ employee.employee_photo }}"
+              alt="{{ employee.first_name }} {{ employee.last_name }}"
+              style="
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid #dee2e6;
+              "
+            />
+          </div>
+
+          <p>Employee ID: {{ employee.id }}</p>
+          <p>First Name: {{ employee.first_name }}</p>
+          <p>Last Name: {{ employee.last_name }}</p>
+          <p>Email: {{ employee.email }}</p>
+          <p>Gender: {{ employee.gender }}</p>
+          <p>Designation: {{ employee.designation }}</p>
+          <p>Salary: {{ employee.salary }}</p>
+          <p>Date of Joining: {{ employee.date_of_joining }}</p>
+          <p>Department: {{ employee.department }}</p>
+
+          <button routerLink="/employees" class="btn btn-secondary">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
