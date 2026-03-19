@@ -1,5 +1,6 @@
 const EmployeeModel = require('../models/EmployeeModel');
 const { DateResolver } = require("graphql-scalars");
+const cloudinary = require('../config/cloudinary');
 
 const employeeResolvers = {
     Date: DateResolver,
@@ -45,6 +46,14 @@ const employeeResolvers = {
         createEmployee: async (_, { first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }, { user} ) => {
             if (!user) { throw new Error("Unauthorized"); }
             try {
+                await cloudinary.uploader.upload(employee_photo, {upload_preset: "Assignment 2"}, (error, result)=>{
+                    if (error) {
+                        throw new Error(error);
+                    }
+
+                    employee_photo = result.secure_url;
+                });
+
                 const newEmployee = new EmployeeModel({
                     first_name,
                     last_name,
@@ -64,6 +73,13 @@ const employeeResolvers = {
         updateEmployee: async (_, { id, first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo }, {user}) => {
             if (!user) { throw new Error("Unauthorized"); }
             try {
+                await cloudinary.uploader.upload(employee_photo, {upload_preset: "Assignment 2"}, (error, result)=>{
+                    if (error) {
+                        throw new Error(error);
+                    }
+
+                    employee_photo = result.secure_url;
+                });
                 const updatedEmployee = await EmployeeModel.findByIdAndUpdate(
                     id,
                     { first_name, last_name, email, gender, designation, salary, date_of_joining, department, employee_photo },

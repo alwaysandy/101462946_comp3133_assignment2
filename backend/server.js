@@ -35,7 +35,7 @@ async function startServer() {
     app.use(
         '/graphql',
         cors(),
-        express.json(),
+        express.json({ limit: '50mb' }),
         expressMiddleware(server, {
             context: async ({ req }) => {
                 const authHeader = req.headers.authorization || "";
