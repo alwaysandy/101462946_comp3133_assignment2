@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { GET_EMPLOYEE_BY_ID, GET_EMPLOYEES } from '../../../core/graphql/graphql.queries';
+import { DELETE_EMPLOYEE, GET_EMPLOYEES } from '../../../core/graphql/graphql.queries';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -21,14 +21,30 @@ export class EmployeesList {
   getEmployees() {
     console.log('getEmployees()');
     this.apollo
-      .query({
+      .watchQuery({
         query: GET_EMPLOYEES,
       })
-      .subscribe(({ data, error }: any) => {
+      .valueChanges.subscribe(({ data, error }: any) => {
         console.log(data);
         this.employees = data.employees;
         this.cdr.detectChanges();
         console.log(this.employees);
+      });
+  }
+
+  deleteEmployee(id: String) {
+    this.apollo
+      .mutate({
+        mutation: DELETE_EMPLOYEE,
+        variables: {
+          id
+        },
+        refetchQueries: [{
+          query: GET_EMPLOYEES
+        }]
+      }).subscribe(({ data, error }: any) => {
+        console.log(data);
+        console.log(error);
       });
   }
 }
