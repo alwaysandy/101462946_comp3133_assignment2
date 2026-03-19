@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DELETE_EMPLOYEE, GET_EMPLOYEES } from '../../../core/graphql/graphql.queries';
 import { RouterLink } from '@angular/router';
@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './employeeslist.html',
   styleUrl: './employeeslist.css',
 })
-export class EmployeesList {
+export class EmployeesList implements OnInit {
   private apollo = inject(Apollo);
   private cdr = inject(ChangeDetectorRef);
   employees: any[] = [];

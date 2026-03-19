@@ -84,8 +84,13 @@ export class UpdateEmployee implements OnInit {
 
   updateEmployee() {
     if (this.updateForm.invalid) {
-      this.error = 'Please ensure all form fields are filled.';
-      this.updateForm.markAllAsTouched();
+      Object.keys(this.updateForm.controls).forEach((key) => {
+        const controlErrors = this.updateForm.get(key)?.errors;
+        if (controlErrors != null) {
+          this.error =
+            key + ' ' + Object.keys(controlErrors)[0] + ' ' + Object.values(controlErrors)[0];
+        }
+      });
       return;
     }
 

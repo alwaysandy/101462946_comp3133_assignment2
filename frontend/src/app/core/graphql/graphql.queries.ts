@@ -53,6 +53,42 @@ const GET_EMPLOYEE_BY_ID = gql`
   }
 `;
 
+const CREATE_EMPLOYEE = gql`
+  mutation AddEmployee(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $gender: String!
+    $designation: String!
+    $salary: Float!
+    $dateOfJoining: Date!
+    $department: String!
+    $employeePhoto: String!
+  ) {
+    createEmployee(
+      first_name: $firstName
+      last_name: $lastName
+      email: $email
+      gender: $gender
+      designation: $designation
+      salary: $salary
+      date_of_joining: $dateOfJoining
+      department: $department
+      employee_photo: $employeePhoto
+    ) {
+      first_name
+      last_name
+      email
+      gender
+      designation
+      salary
+      date_of_joining
+      department
+      employee_photo
+    }
+  }
+`;
+
 const UPDATE_EMPLOYEE = gql`
   mutation UpdateEmployee(
     $id: ID!
@@ -107,4 +143,4 @@ const DELETE_EMPLOYEE = gql`
   }
 `;
 
-export { LOGIN, SIGNUP_USER, GET_EMPLOYEES, GET_EMPLOYEE_BY_ID, DELETE_EMPLOYEE, UPDATE_EMPLOYEE };
+export { LOGIN, SIGNUP_USER, GET_EMPLOYEES, GET_EMPLOYEE_BY_ID, CREATE_EMPLOYEE, DELETE_EMPLOYEE, UPDATE_EMPLOYEE };

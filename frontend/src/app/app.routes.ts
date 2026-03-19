@@ -6,6 +6,7 @@ import { EmployeeDetails } from './features/employees/employeedetails/employeede
 import { EmployeesList } from './features/employees/employeeslist/employeeslist';
 import { UpdateEmployee } from './features/employees/updateemployee/updateemployee'
 import { Employees } from './features/employees/employees';
+import { AddEmployee } from './features/employees/addemployee/addemployee';
 
 export const routes: Routes = [
   { path: 'login', component: Login, title: 'Login' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: EmployeesList },
       { path: 'details/:id', component: EmployeeDetails },
+      { path: 'add', component: AddEmployee },
       { path: 'update/:id', component: UpdateEmployee },
     ],
   },

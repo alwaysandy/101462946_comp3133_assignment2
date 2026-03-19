@@ -1,1 +1,116 @@
-<p>addemployee works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center fw-bold fs-4">Add Employee</div>
+
+        <div class="card-body p-4">
+          @if (error) {
+            <ngb-alert type="danger" [dismissible]="true" (closed)="error=''">
+              {{ error }}
+            </ngb-alert>
+          }
+
+          <form [formGroup]="addForm" (ngSubmit)="createEmployee()">
+            <div class="mb-3">
+              <label class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter first name"
+                formControlName="first_name"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter last name"
+                formControlName="last_name"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter email"
+                formControlName="email"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Gender</label>
+              <select
+                class="form-select"
+                formControlName="gender"
+              >
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Designation</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter position"
+                formControlName="designation"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Salary</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter salary"
+                formControlName="salary"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Date of Joining</label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="date_of_joining"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Department</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter department"
+                formControlName="department"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Profile Picture</label>
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control"
+                (change)="onFileSelected($event)"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Employee</button>
+            <button routerLink="/employees" type="button" class="btn btn-secondary ms-2">
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
