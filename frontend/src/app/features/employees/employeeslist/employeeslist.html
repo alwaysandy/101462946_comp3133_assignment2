@@ -11,9 +11,9 @@
     <div class="col"></div>
 
     <div class="col-auto">
-      <form>
+      <form (ngSubmit)="getFilteredEmployees(searchInput.value)">
         <div class="input-group">
-          <input type="text" name="search" class="form-control" placeholder="Search" />
+          <input #searchInput type="text" name="search" class="form-control" placeholder="Search" />
           <button type="submit" class="btn btn-outline-secondary">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
