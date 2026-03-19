@@ -19,4 +19,21 @@ const SIGNUP_USER = gql`
   }
 `;
 
-export { LOGIN, SIGNUP_USER };
+const GET_EMPLOYEES = gql`
+  query employees {
+    employees {
+      id
+      first_name
+      last_name
+      email
+      gender
+      designation
+      salary
+      date_of_joining
+      department
+      employee_photo
+    }
+  }
+`;
+
+export { LOGIN, SIGNUP_USER, GET_EMPLOYEES };
