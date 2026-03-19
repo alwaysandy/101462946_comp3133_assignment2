@@ -28,21 +28,17 @@ const employeeResolvers = {
                 throw new Error(`Failed to fetch employee: ${error}`);
             }
         },
-        getFilteredEmployees: async (_, { filter }, { user }) => {
-            if (!user) { throw new Error("Unauthorized"); }
-
+        employeesByDesignationOrDepartment: async (_, { filter }) => {
             try {
-                // Create a case-insensitive regex for the search term
                 const searchRegex = new RegExp(filter, 'i');
                 return await EmployeeModel.find({
                     $or: [
-                        { first_name: { $regex: searchRegex } },
-                        { last_name: { $regex: searchRegex } },
-                        { department: { $regex: searchRegex } }
+                        { designation: { $regex: searchRegex }},
+                        { department: { $regex: searchRegex }}
                     ]
                 });
             } catch (error) {
-                throw new Error(`Failed to fetch employees: ${error.message}`);
+                throw new Error(`Failed to fetch employees by designation or department: ${error}`);
             }
         }
     },

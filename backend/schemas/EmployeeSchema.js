@@ -18,8 +18,7 @@ const employeeSchema = gql`
     type Query {
         employees: [Employee]
         employee(id: ID!): Employee
-        getFilteredEmployees(filter: String!): [Employee]
-        employeesByDesignationOrDepartment(designation: String, department: String): [Employee]
+        employeesByDesignationOrDepartment(filter: String!): [Employee]
     },
     type Mutation {
         createEmployee(

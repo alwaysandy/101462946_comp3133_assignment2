@@ -70,6 +70,22 @@ const GET_FILTERED_EMPLOYEES = gql`
   }
 `;
 
+const GET_EMPLOYEES_BY_DESIGNATION_OR_DEPARTMENT = gql`
+  query GetEmployeeByDesignationOrDepartment($filter: String!) {
+    employeesByDesignationOrDepartment(filter: $filter) {
+      id
+      first_name
+      last_name
+      email
+      gender
+      designation
+      salary
+      date_of_joining
+      department
+      employee_photo
+    }
+  }
+`;
 const CREATE_EMPLOYEE = gql`
   mutation AddEmployee(
     $firstName: String!
@@ -160,4 +176,13 @@ const DELETE_EMPLOYEE = gql`
   }
 `;
 
-export { LOGIN, SIGNUP_USER, GET_EMPLOYEES, GET_EMPLOYEE_BY_ID, GET_FILTERED_EMPLOYEES, CREATE_EMPLOYEE, DELETE_EMPLOYEE, UPDATE_EMPLOYEE };
+export {
+  LOGIN,
+  SIGNUP_USER,
+  GET_EMPLOYEES,
+  GET_EMPLOYEE_BY_ID,
+  GET_EMPLOYEES_BY_DESIGNATION_OR_DEPARTMENT,
+  CREATE_EMPLOYEE,
+  DELETE_EMPLOYEE,
+  UPDATE_EMPLOYEE,
+};

@@ -89,6 +89,7 @@ export class UpdateEmployee implements OnInit {
         if (controlErrors != null) {
           this.error =
             key + ' ' + Object.keys(controlErrors)[0] + ' ' + Object.values(controlErrors)[0];
+          return;
         }
       });
       return;

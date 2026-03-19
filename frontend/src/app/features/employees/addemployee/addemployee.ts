@@ -4,10 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-  CREATE_EMPLOYEE,
-  GET_EMPLOYEES
-} from '../../../core/graphql/graphql.queries';
+import { CREATE_EMPLOYEE, GET_EMPLOYEES } from '../../../core/graphql/graphql.queries';
 
 @Component({
   selector: 'add-employee',
@@ -62,8 +59,10 @@ export class AddEmployee {
       Object.keys(this.addForm.controls).forEach((key) => {
         const controlErrors = this.addForm.get(key)?.errors;
         if (controlErrors != null) {
-           this.error = key + " " + Object.keys(controlErrors)[0] + " " + Object.values(controlErrors)[0];
+          this.error =
+            key + ' ' + Object.keys(controlErrors)[0] + ' ' + Object.values(controlErrors)[0];
         }
+        return;
       });
       return;
     }
@@ -90,6 +89,5 @@ export class AddEmployee {
         next: () => this.router.navigate(['/employees']),
         error: (error) => (this.error = error.message),
       });
-
   }
 }

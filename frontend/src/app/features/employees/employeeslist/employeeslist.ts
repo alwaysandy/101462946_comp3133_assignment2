@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import {
   DELETE_EMPLOYEE,
   GET_EMPLOYEES,
-  GET_FILTERED_EMPLOYEES,
+  GET_EMPLOYEES_BY_DESIGNATION_OR_DEPARTMENT,
 } from '../../../core/graphql/graphql.queries';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -37,12 +37,12 @@ export class EmployeesList implements OnInit {
   getFilteredEmployees(filter: string) {
     this.apollo
       .query({
-        query: GET_FILTERED_EMPLOYEES,
+        query: GET_EMPLOYEES_BY_DESIGNATION_OR_DEPARTMENT,
         variables: { filter },
       })
       .subscribe(({ data, error }: any) => {
         console.log(data);
-        this.employees = data.getFilteredEmployees;
+        this.employees = data.employeesByDesignationOrDepartment;
         this.cdr.detectChanges();
       });
   }

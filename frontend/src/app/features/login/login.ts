@@ -7,7 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   selector: 'login',
-  imports: [FormField, RouterLink, NgbAlert, ReactiveFormsModule],
+  imports: [RouterLink, NgbAlert, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

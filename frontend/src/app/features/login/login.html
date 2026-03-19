@@ -5,12 +5,17 @@
         <div class="card-header text-center fw-bold fs-4">Login</div>
         <div class="card-body p-4">
           @if (error) {
-            <ngb-alert type="danger" [dismissible]="true" (closed)="error=''">
+            <ngb-alert type="danger" [dismissible]="true" (closed)="error = ''">
               {{ error }}
             </ngb-alert>
           }
 
-          <form [formGroup]="loginForm" (submit)="onSubmit(); $event.preventDefault()" id="login-form" class="mb-3">
+          <form
+            [formGroup]="loginForm"
+            (submit)="onSubmit(); $event.preventDefault()"
+            id="login-form"
+            class="mb-3"
+          >
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" formControlName="email" class="form-control" id="email" />
