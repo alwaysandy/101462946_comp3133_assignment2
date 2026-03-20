@@ -53,23 +53,6 @@ const GET_EMPLOYEE_BY_ID = gql`
   }
 `;
 
-const GET_FILTERED_EMPLOYEES = gql`
-  query GetFilteredEmployees($filter: String!) {
-    getFilteredEmployees(filter: $filter) {
-      id
-      first_name
-      last_name
-      email
-      gender
-      designation
-      salary
-      date_of_joining
-      department
-      employee_photo
-    }
-  }
-`;
-
 const GET_EMPLOYEES_BY_DESIGNATION_OR_DEPARTMENT = gql`
   query GetEmployeeByDesignationOrDepartment($filter: String!) {
     employeesByDesignationOrDepartment(filter: $filter) {
