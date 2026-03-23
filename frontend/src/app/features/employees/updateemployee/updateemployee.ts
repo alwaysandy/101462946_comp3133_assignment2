@@ -87,8 +87,7 @@ export class UpdateEmployee implements OnInit {
       Object.keys(this.updateForm.controls).forEach((key) => {
         const controlErrors = this.updateForm.get(key)?.errors;
         if (controlErrors != null) {
-          this.error =
-            key + ' ' + Object.keys(controlErrors)[0] + ' ' + Object.values(controlErrors)[0];
+          this.error = `${key} is invalid. Please enter a valid ${key}`;
           return;
         }
       });

@@ -59,8 +59,7 @@ export class AddEmployee {
       Object.keys(this.addForm.controls).forEach((key) => {
         const controlErrors = this.addForm.get(key)?.errors;
         if (controlErrors != null) {
-          this.error =
-            key + ' ' + Object.keys(controlErrors)[0] + ' ' + Object.values(controlErrors)[0];
+          this.error = `${key} is invalid. Please enter a valid ${key}`;
         }
         return;
       });
