@@ -33,7 +33,12 @@ export const appConfig: ApplicationConfig = {
       });
 
       return {
-        link: ApolloLink.from([auth, httpLink.create({ uri: 'http://localhost:3005/graphql' })]),
+        link: ApolloLink.from([
+          auth,
+          httpLink.create({
+            uri: 'https://101462946-comp3133-assignment2-azya.vercel.app/graphql',
+          }),
+        ]),
         cache: new InMemoryCache(),
       };
     }),
