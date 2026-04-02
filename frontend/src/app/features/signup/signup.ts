@@ -59,13 +59,11 @@ export class Signup {
       })
       .subscribe({
         next: ({ data }) => {
-          console.log('User created:', data);
           this.router.navigate(['/login']);
         },
         error: (error) => {
           this.error = error.message;
           this.cdr.detectChanges();
-          console.error('Signup failed', error);
         },
       });
   }

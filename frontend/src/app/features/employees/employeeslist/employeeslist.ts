@@ -41,7 +41,6 @@ export class EmployeesList implements OnInit {
         variables: { filter },
       })
       .subscribe(({ data, error }: any) => {
-        console.log(data);
         this.employees = data.employeesByDesignationOrDepartment;
         this.cdr.detectChanges();
       });
@@ -61,7 +60,7 @@ export class EmployeesList implements OnInit {
         ],
       })
       .subscribe(({ data, error }: any) => {
-        console.log(error);
+        console.error(error);
       });
   }
 }

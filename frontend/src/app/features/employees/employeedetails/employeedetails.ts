@@ -32,10 +32,8 @@ export class EmployeeDetails {
         },
       })
       .subscribe(({ data, error }: any) => {
-        console.log(data);
         this.employee = data.employee;
         this.cdr.detectChanges();
-        console.log(this.employee);
       });
   }
 }

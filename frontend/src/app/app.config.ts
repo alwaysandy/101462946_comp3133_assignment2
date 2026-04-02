@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
       });
 
       return {
-        link: ApolloLink.from([auth, httpLink.create({ uri: 'http://localhost:4000/graphql' })]),
+        link: ApolloLink.from([auth, httpLink.create({ uri: 'http://localhost:3005/graphql' })]),
         cache: new InMemoryCache(),
       };
     }),

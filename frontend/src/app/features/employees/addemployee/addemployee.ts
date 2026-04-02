@@ -67,7 +67,6 @@ export class AddEmployee {
     }
 
     const val = this.addForm.value;
-    console.log(val.date_of_joining);
     this.apollo
       .mutate({
         mutation: CREATE_EMPLOYEE,
