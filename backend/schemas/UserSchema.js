@@ -5,6 +5,7 @@ const userSchema = gql`
         id: ID!
         username: String!
         email: String!
+        password: String!
     },
     type AuthPayload {
         token: String!
